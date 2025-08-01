@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <column name="batch-control" display="left" order="290">
+            <widget type="checkbox" fieldname="batchcontrol"/>
+        </column>
+        <column name="expiration-period" display="right" order="300">
+            <widget type="number" fieldname="expirationperiod"/>
+        </column>
+    </columns>
+</view>

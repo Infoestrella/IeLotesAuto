@@ -1,0 +1,13 @@
+{
+    "batch": "Lote",
+    "batch-control": "Control de lote",
+    "doc-packs": "Packs documento",
+    "doc-units": "Unidades documento",
+    "expiration-date": "Caducidad",
+    "expirationdate": "Caducidad",
+    "expiration-period": "Días caducidad",
+    "linebatch": "Lote",
+    "pack-size": "Unidades por pack",
+    "traceability": "Trazabilidad",
+    "units": "Unidades"
+}

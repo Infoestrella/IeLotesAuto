@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <group name="traceability" title="traceability" numcolumns="12">
+            <column name="batch-control" numcolumns="2" order="200">
+                <widget type="checkbox" fieldname="batchcontrol"/>
+            </column>
+            <column name="expiration-period" numcolumns="2" order="200">
+                <widget type="number" fieldname="expirationperiod"/>
+            </column>
+        </group>
+    </columns>
+</view>

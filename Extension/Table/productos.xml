@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+    <column>
+        <name>batchcontrol</name>
+        <type>boolean</type>
+    </column>
+    <column>
+        <name>expirationperiod</name>
+        <type>double precision</type>
+    </column>
+</table>

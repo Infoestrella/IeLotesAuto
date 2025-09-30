@@ -8,4 +8,8 @@
         <name>expirationperiod</name>
         <type>double precision</type>
     </column>
+    <column>
+        <name>headdiscount</name>
+        <type>boolean</type>
+    </column>
 </table>

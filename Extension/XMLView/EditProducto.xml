@@ -8,6 +8,9 @@
             <column name="expiration-period" numcolumns="2" order="200">
                 <widget type="number" fieldname="expirationperiod"/>
             </column>
+            <column name="head-discount" title="head-discount" numcolumns="3" order="110">
+                <widget type="checkbox" fieldname="headdiscount"/>
+            </column>
         </group>
     </columns>
 </view>

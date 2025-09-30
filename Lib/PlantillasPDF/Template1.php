@@ -18,6 +18,7 @@ class Template1 extends ParentClass
             'cantidad' => 'weight',
             'linebatch' => 'batch',
             'expirationdate' => 'expiration-date',
+            'lineheads' => 'heads',
             'descripcion' => 'description',
             'dtopor' => 'dto',
             'dtopor2' => 'dto-2',
@@ -60,6 +61,7 @@ class Template1 extends ParentClass
                     || $key === 'pvpdto'
                     || $key === 'linebatch'
                     || $key === 'expirationdate'
+                    || $key === 'lineheads'
                     || $key === 'codbarras') {
                     $show = true;
                     break;

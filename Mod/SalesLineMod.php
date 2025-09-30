@@ -19,6 +19,7 @@ class SalesLineMod implements SalesLineModInterface{
         
         $expValue = $formData['expirationdate_' . $id] ?? null;
         $line->expirationdate = (!empty($expValue) && $expValue !== '0000-00-00') ? $expValue : null;
+        $line->lineheads = $formData['lineheads_' . $id] ?? null;
     }
 
     public function assets(): void
@@ -37,12 +38,12 @@ class SalesLineMod implements SalesLineModInterface{
 
     public function newFields(): array
     {
-        return ['linebatch', 'expirationdate'];
+        return ['linebatch', 'expirationdate', 'lineheads'];
     }
 
     public function newTitles(): array
     {
-        return ['linebatch', 'expirationdate'];
+        return ['linebatch', 'expirationdate', 'lineheads'];
     }
 
     public function renderField(Translator $i18n, string $idlinea, SalesDocumentLine $line, SalesDocument $model, string $field): ?string
@@ -54,6 +55,10 @@ class SalesLineMod implements SalesLineModInterface{
 
             if ($field === 'expirationdate') {
                 return $this->expirationDate($i18n, $idlinea, $line, $model);
+            }
+
+            if ($field === 'lineheads') {
+                return $this->lineheads($i18n, $idlinea, $line, $model);
             }
         }
         return null;
@@ -68,7 +73,11 @@ class SalesLineMod implements SalesLineModInterface{
 
             if ($field === 'expirationdate') {
                 return '<div class="col-lg-1 order-9"> ' . $i18n->trans('expiration-date') . '</div>';
-            }    
+            }
+
+            if ($field === 'lineheads') {
+                return '<div class="col-lg-1 order-3 text-right">' . $i18n->trans('heads') . '</div>';
+            }
         }
         return null;
     }
@@ -142,5 +151,20 @@ class SalesLineMod implements SalesLineModInterface{
         }
 
         return date('Y-m-d', strtotime($doc->fecha . ' +' . $expirationPeriod . ' days'));
+    }
+
+    protected function lineheads($i18n, $idlinea, $line, $model): string
+    {
+        $attributes = $model->editable ?
+            'name="lineheads_' . $idlinea . '"' :
+            'disabled=""';
+
+        $classinput = 'form-control form-control-sm text-lg-right border-top-0 border-bottom-0 rounded-0';
+        $lineheads = isset($line->lineheads) ? $line->lineheads : '0';
+
+        return '<div class="col-sm col-lg-1 order-3">'
+            . '<div class="d-lg-none mt-3 small">' . $i18n->trans('heads') . '</div>'
+            . '<input type="number" ' . $attributes . ' value="' . $lineheads . '" class="' . $classinput . '"/>'
+            . '</div>';
     }
 }

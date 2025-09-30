@@ -8,4 +8,8 @@
         <name>expirationdate</name>
         <type>date</type>
     </column>
+    <column>
+        <name>lineheads</name>
+        <type>double precision</type>
+    </column>
 </table>

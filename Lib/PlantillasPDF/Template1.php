@@ -1,6 +1,6 @@
 <?php
 
-namespace FacturaScripts\Plugins\IePacks\Lib\PlantillasPDF;
+namespace FacturaScripts\Plugins\IeLotesAuto\Lib\PlantillasPDF;
 
 use FacturaScripts\Core\Tools;
 use FacturaScripts\Plugins\PlantillasPDF\Lib\PlantillasPDF\Template1 as ParentClass;

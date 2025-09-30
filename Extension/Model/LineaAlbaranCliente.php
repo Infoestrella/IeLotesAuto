@@ -18,7 +18,7 @@ class LineaAlbaranCliente
             }
 
             $document = $this->getDocument();
-            $newLine = $document->getNewProductLine('62');
+            $newLine = $document->getNewProductLine('76');
             $newLine->cantidad = -1;
             $newLine->pvpunitario = $this->lineheads * 0.25;
             $newLine->save();

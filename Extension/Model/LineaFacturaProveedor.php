@@ -6,7 +6,6 @@ use Closure;
 
 class LineaFacturaProveedor
 {
-
     public function saveInsert(): Closure
     {
         return function() {

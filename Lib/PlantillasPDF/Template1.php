@@ -7,7 +7,6 @@ use FacturaScripts\Plugins\PlantillasPDF\Lib\PlantillasPDF\Template1 as ParentCl
 
 class Template1 extends ParentClass
 {
-
     protected function getInvoiceLineFieldTitle(string $txt): string
     {
         if (strtolower($txt) === 'irpf') {

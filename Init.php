@@ -1,9 +1,11 @@
 <?php
+
 namespace FacturaScripts\Plugins\IeLotesAuto;
 
 use FacturaScripts\Core\Template\InitClass;
-use FacturaScripts\Core\Base\AjaxForms\SalesLineHTML;
-use FacturaScripts\Core\Base\AjaxForms\PurchasesLineHTML;
+use FacturaScripts\Core\Tools;
+use FacturaScripts\Core\Lib\AjaxForms\SalesLineHTML;
+use FacturaScripts\Core\Lib\AjaxForms\PurchasesLineHTML;
 
 final class Init extends InitClass
 {

@@ -6,7 +6,6 @@ use Closure;
 
 class LineaAlbaranCliente
 {
-
     public function saveInsert(): Closure
     {
         return function() {

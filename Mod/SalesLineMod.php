@@ -2,18 +2,18 @@
 
 namespace FacturaScripts\Plugins\IeLotesAuto\Mod;
 
-use FacturaScripts\Core\Base\Contract\SalesLineModInterface;
-use FacturaScripts\Core\Base\Translator;
+use FacturaScripts\Core\Contract\SalesLineModInterface;
 use FacturaScripts\Core\Model\Base\SalesDocument;
 use FacturaScripts\Core\Model\Base\SalesDocumentLine;
+use FacturaScripts\Core\Tools;
 
 class SalesLineMod implements SalesLineModInterface{
 
-    public function apply(SalesDocument &$model, array &$lines, array $formData)
+    public function apply(SalesDocument &$model, array &$lines, array $formData): void
     {
     }
 
-    public function applyToLine(array $formData, SalesDocumentLine &$line, string $id)
+    public function applyToLine(array $formData, SalesDocumentLine &$line, string $id): void
     {
         $line->linebatch = $formData['batchline_' . $id] ?? null;
         
@@ -46,37 +46,37 @@ class SalesLineMod implements SalesLineModInterface{
         return ['linebatch', 'expirationdate', 'lineheads'];
     }
 
-    public function renderField(Translator $i18n, string $idlinea, SalesDocumentLine $line, SalesDocument $model, string $field): ?string
+    public function renderField(string $idlinea, SalesDocumentLine $line, SalesDocument $model, string $field): ?string
     {
         if ($model->modelClassName() == 'FacturaCliente' || $model->modelClassName() == 'AlbaranCliente') {       
             if ($field === 'linebatch') {
-                return $this->batchLine($i18n, $idlinea, $line, $model);
+                return $this->batchLine($idlinea, $line, $model);
             }
 
             if ($field === 'expirationdate') {
-                return $this->expirationDate($i18n, $idlinea, $line, $model);
+                return $this->expirationDate($idlinea, $line, $model);
             }
 
             if ($field === 'lineheads') {
-                return $this->lineheads($i18n, $idlinea, $line, $model);
+                return $this->lineheads($idlinea, $line, $model);
             }
         }
         return null;
     }
 
-    public function renderTitle(Translator $i18n, SalesDocument $model, string $field): ?string
+    public function renderTitle(SalesDocument $model, string $field): ?string
     {
         if ($model->modelClassName() == 'FacturaCliente' || $model->modelClassName() == 'AlbaranCliente') { 
             if ($field === 'linebatch') {
-                return '<div class="col-lg-1 order-9"> ' . $i18n->trans('batch') . '</div>';
+                return '<div class="col-lg-1 order-9"> ' . Tools::trans('batch') . '</div>';
             }       
 
             if ($field === 'expirationdate') {
-                return '<div class="col-lg-1 order-9"> ' . $i18n->trans('expiration-date') . '</div>';
+                return '<div class="col-lg-1 order-9"> ' . Tools::trans('expiration-date') . '</div>';
             }
 
             if ($field === 'lineheads') {
-                return '<div class="col-lg-1 order-3 text-right">' . $i18n->trans('heads') . '</div>';
+                return '<div class="col-lg-1 order-3 text-end">' . Tools::trans('heads') . '</div>';
             }
         }
         return null;
@@ -87,7 +87,7 @@ class SalesLineMod implements SalesLineModInterface{
         return null;
     }
 
-    protected function batchLine($i18n, $idlinea, $line, $model): string
+    protected function batchLine($idlinea, $line, $model): string
     {
         $attributes = $model->editable ?
             'name="batchline_' . $idlinea . '" tabindex="3"' :
@@ -121,7 +121,7 @@ class SalesLineMod implements SalesLineModInterface{
         return $lineBatch;
     }
 
-    protected function expirationDate($i18n, $idlinea, $line, $model): string
+    protected function expirationDate($idlinea, $line, $model): string
     {
 
         $attributes = $model->editable ?
@@ -153,17 +153,17 @@ class SalesLineMod implements SalesLineModInterface{
         return date('Y-m-d', strtotime($doc->fecha . ' +' . $expirationPeriod . ' days'));
     }
 
-    protected function lineheads($i18n, $idlinea, $line, $model): string
+    protected function lineheads($idlinea, $line, $model): string
     {
         $attributes = $model->editable ?
             'name="lineheads_' . $idlinea . '"' :
             'disabled=""';
 
-        $classinput = 'form-control form-control-sm text-lg-right border-top-0 border-bottom-0 rounded-0';
+        $classinput = 'form-control form-control-sm text-lg-end border-top-0 border-bottom-0 rounded-0';
         $lineheads = isset($line->lineheads) ? $line->lineheads : '0';
 
         return '<div class="col-sm col-lg-1 order-3">'
-            . '<div class="d-lg-none mt-3 small">' . $i18n->trans('heads') . '</div>'
+            . '<div class="d-lg-none mt-3 small">' . Tools::trans('heads') . '</div>'
             . '<input type="number" ' . $attributes . ' value="' . $lineheads . '" class="' . $classinput . '"/>'
             . '</div>';
     }
